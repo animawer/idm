@@ -9,7 +9,7 @@ import math
 import pandas as pd
 sys.path.append("../")
 from net.network import TransformerEnc
-from utils.dataset import data_gen_kiq, dataset
+from utils.dataset import dataset
 import pathlib
 import matplotlib.pyplot as plt
 
@@ -155,8 +155,11 @@ def plt_mediapipe_pose(pose_vector, ax=None, size=None, save=None, color="black"
         fig = plt.figure(figsize=(9, 12))
         ax = fig.add_subplot(111)
     #ax.cla()
+    if len(pose_vector) == 15*2+1:
+        pose_vector = np.concatenate([pose_vector[:2], pose_vector[10:]], axis=-1)
     for index, i in enumerate(range(0, len(pose_vector)-len(pose_vector)%2, 2)):
         #print (index, i)
+       
         ax.scatter(x_w*pose_vector[i], -y_w*pose_vector[i+1], color=color)
         if len(pose_vector) == 33*2:
             m = connect_mat[index]

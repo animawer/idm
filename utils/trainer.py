@@ -9,7 +9,7 @@ import math
 import pandas as pd
 sys.path.append("../")
 from net.network import TransformerEnc
-from utils.dataset import data_gen_kiq, dataset
+from utils.dataset import dataset
 from utils.utils import fw_diffusion, mask_generator
 import pathlib
 

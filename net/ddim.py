@@ -9,7 +9,7 @@ import pandas as pd
 sys.path.append("../")
 from net.network import TransformerEnc
 from utils.utils import fw_diffusion, plt_mediapipe_pose
-from utils.dataset import data_gen_kiq, dataset
+from utils.dataset import dataset
 import pathlib
 import matplotlib.pyplot as plt
 
@@ -104,6 +104,8 @@ class ddim_generator(nn.Module):
                     xt = self.trans_model(xt, time)
                 xt = data*M + (xt*(1-M))
         x_out = xt.detach()
+        #x_out = 
+        #M = torch.cat([M[:,:,:,:2], M[:,:,:,10:]], axis=-1)
         #x_out[:,:,:,:3] -= np.pi/4
         if mask_out:
             return x_out, M
